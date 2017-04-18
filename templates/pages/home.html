@@ -2,9 +2,52 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
+<script src="/static/js/nouislider.js"></script>
+<script src="/static/js/wNumb.js"></script>
+
 <div class="page-header">
   <h1>Testing</h1>
 </div>
-<p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
+
+<div class="form-group row">
+	<label for="Current" class="col-sm-4 control-label">How many of your meals a week include red meat?</label>
+	<div class="col-sm-8">
+	<div class="flatSlider" id="currentSlider"></div>
+	<script>
+		$(function() {
+			var slider = document.getElementById('currentSlider');
+			noUiSlider.create(slider, {
+				start: 13,
+				tooltips: true,
+				step: 1,
+				connect: [true, false],
+				format: wNumb({
+					decimals: 0
+					}),
+				range: {
+					'min': 0,
+					'max': 21
+				}
+			});
+		});
+	</script>	
+
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="CutBack" class="col-sm-4 control-label">How many meals would you be willing to eliminate red meat from in one week?</label>
+	<div class="col-sm-8">
+		<select class="form-control" id="CutBack">
+			<option disabled selected>Select One</option>
+			<option value="0">None</option>
+			<option value="28.43">Almost None (1 - 5)</option>
+			<option value="85.3125">Very Few (6 - 9)</option>
+			<option value="130.8">About Half (10 - 13)</option>
+			<option value="176.3125">Most (14 - 17)</option>
+			<option value="221.8125">Almost All (18 - 21)</option>
+		</select>
+	</div>
+</div>
 
 {% endblock %}
