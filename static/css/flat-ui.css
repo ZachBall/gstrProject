@@ -5909,7 +5909,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
     background-image: url(../img/login/imac-2x.png);
   }
 }
-footer {
+/*footer {
   background-color: #edeff1;
   color: #bac1c8;
   font-size: 15px;
@@ -5968,7 +5968,7 @@ footer p {
 .footer-banner ul li:first-child {
   border-top: none;
   padding-top: 1px;
-}
+}*/
 .last-col {
   overflow: hidden;
 }
