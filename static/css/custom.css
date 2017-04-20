@@ -2,8 +2,8 @@
 	margin: 0px 0px 30px;
 }
 
-.panel-body{
-	margin-top: 50px;
+.slider-panel{
+	margin-top: 25px;
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 25px;
@@ -21,7 +21,7 @@ Ui-background {
     background-color: #34495e;
 }
 .noUi-base .noUi-handle {
-    background-color: #1abc9c;
+    background-color: #009688;
     border: none;
     border-radius: 6px;
     box-shadow: none;
