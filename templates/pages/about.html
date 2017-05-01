@@ -1,11 +1,121 @@
 {% extends 'layouts/main.html' %}
-{% block title %}About{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
 
-<div class="page-header">
-  <h1>About Page</h1>
-</div>
-<p class="lead">This is just a placeholder page which should be replaced with real content.</p>
-<p>This page will be a brief explanation about the research and project</p>
+<script src="/static/js/nouislider.js"></script>
+<script src="/static/js/wNumb.js"></script>
+<script src="/static/js/updateSlider.js"></script>
 
-{% endblock %}
+<div class="page-header">
+  <h1>Calculator</h1>
+</div>
+
+<div class="panel panel-default slider-panel">
+	<div class="panel-heading">
+		How many of your meals a week include red meat?
+	</div>
+	<div class="panel-body slider-panel">
+		<div class="flatSlider" id="currentSlider"></div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		How many meals would you be willing to eliminate red meat from in one week?
+	</div>
+	<div class="panel-body slider-panel">
+		<div class="flatSlider" id="CutBack"></div>
+	</div>
+</div>
+
+<script>
+	$(function(){
+		//Create the first slider
+		var slider = document.getElementById('currentSlider');
+		noUiSlider.create(slider, {
+			start: 13,
+			tooltips: true,
+			step: 1,
+			connect: [true, false],
+			format: wNumb({
+				decimals: 0
+				}),
+			range: {
+				'min': 0,
+				'max': 21
+			}
+		});
+		//Create the second slider
+		var slider2 = document.getElementById('CutBack');
+		noUiSlider.create(slider2, {
+			start: 0,
+			tooltips: true,
+			step: 1,
+			connect: [true, false],
+			format: wNumb({
+				decimals: 0,
+				}),
+			range: {
+				'min': 0,
+				'max': 13
+				}
+		});
+		//Bind the second slider max value to the value of the first slider
+		slider.noUiSlider.on('slide', function(){
+			updateSlider(slider2, slider.noUiSlider.get());
+		});
+	});
+</script>
+
+<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#resultModal">
+  Calculate
+</button>
+
+<!-- Modal -->
+<div class="modal" id="resultModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title">Results</h4>
+			</div>
+			<div class="modal-body">
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h4 class="panel-title">Your Current CO<sub>2</sub>e Emissions</h4>
+					</div>
+					<div class="panel-body">
+						<p id="currentOutput"></p>
+						<p id="currentEquivalence"></p>
+					</div>
+				</div>
+
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="panel-title">How Much CO<sub>2</sub>e Your Diet Change Would Prevent</h4>
+					</div>
+					<div class="panel-body">
+						<p id="outputCut"></p>
+					</div>
+				</div>
+
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h4 class="panel-title">Your Calculated CO<sub>2</sub>e Emissions With Diet Change</h4>
+					</div>
+					<div class="panel-body">
+						<p id="newOutput"></p>
+						<p id="equivalence"></p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/static/js/calculate.js"></script>
+
+{%  endblock %}
