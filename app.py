@@ -5,7 +5,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_peewee.db import Database
 from peewee import *
-from models import *
+from models import * 
 import logging
 from logging import Formatter, FileHandler
 from forms import *
