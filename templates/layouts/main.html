@@ -68,7 +68,8 @@
           <ul class="nav navbar-nav">
             <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
 	    <li {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">Calculator</a></li>
-          </ul>
+            <li {% if request.endpoint == 'total' %} class="active" {% endif %}><a href="{{ url_for('total') }}">Total</a>
+	  </ul>
           <ul class="nav navbar-nav pull-right">
           </ul>
         </div><!--/.nav-collapse -->

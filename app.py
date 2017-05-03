@@ -3,7 +3,9 @@
 #----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request, redirect
-# from flask.ext.sqlalchemy import SQLAlchemy
+from flask_peewee.db import Database
+from peewee import *
+from models import *
 import logging
 from logging import Formatter, FileHandler
 from forms import *
@@ -12,10 +14,20 @@ import os
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
+DATABASE = {
+    'name': 'people.db',
+    'engine': 'peewee.SqliteDatabase',
+}
+DEBUG = True
+SECRET_KEY = 'ssshhhh'
 
 app = Flask(__name__)
-app.config.from_object('config')
-#db = SQLAlchemy(app)
+app.config.from_object(__name__)
+
+db = SqliteDatabase('people.db')
+
+db.connect()
+#Pledge.create_table(True)
 
 # Automatically tear down SQLAlchemy.
 '''
@@ -48,11 +60,24 @@ def home():
     return render_template('pages/home.html')
 
 
-@app.route('/about')
+@app.route('/about', methods=["GET", "POST"])
 def about():
+    if request.method == "POST":
+        data = request.form
+        print data
+        Pledge.create(name=data['Name'], cutBack=data['cutOut'])
     return render_template('pages/about.html')
 
-
+@app.route('/total')
+def total():
+    number = Pledge.select().count()
+    query = Pledge.select()
+    allPledge = list(query)
+    total = 0
+    for i in allPledge:
+        total += i.cutBack
+    print total
+    return render_template('pages/total.html', number=number, total=total)
 # Error handlers.
 
 

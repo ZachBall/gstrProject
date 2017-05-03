@@ -1,11 +1,12 @@
 {% extends 'layouts/main.html' %}
-{% block title %}About{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
 
 <div class="page-header">
-  <h1>About Page</h1>
+  <h1>The Effects of the Livestock Industry on the Global Environment</h1>
 </div>
-<p class="lead">TESTING</p>
-
+<p class="lead">THE FACTS</p>
+<embed src="static/test.pdf" width="100%" height="2100px"/>
+<p>Now check out the <a href="{{ url_for('about') }}">calculator</a> to see how much of a difference you could make!</p>
 
 {% endblock %}
