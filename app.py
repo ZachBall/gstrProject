@@ -36,6 +36,7 @@ class Pledge(Model):
     class Meta:
         database = db
 
+Pledge.create_table(True)
 # Automatically tear down SQLAlchemy.
 '''
 @app.teardown_request
@@ -71,8 +72,8 @@ def home():
 def about():
     if request.method == "POST":
         data = request.form
-        print data
-        Pledge.create(name=data['Name'], cutBack=data['cutOut'])
+        query = Pledge(name=data['Name'], cutBack=data['cutOut'])
+        query.save()
     return render_template('pages/about.html')
 
 @app.route('/total')
