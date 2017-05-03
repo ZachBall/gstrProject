@@ -76,7 +76,7 @@ def about():
             Pledge.create(name=data['Name'], cutBack=data['cutOut'])
         except:
             try:
-                numbers = [0, 184, 369, 553, 738, 922, 1107, 1291, 1476, 1660, 1845, 2029, 2213, 2398, 2582, 2767, 2951, 3136, 3320, 3505, 3689, 3874]
+                numbers = [0, 184, 369, 553, 738, 922]
                 Pledge.create(name="TESTING", cutBack=random.choice(numbers))
             except:
                 pass
