@@ -1,0 +1,23 @@
+{% extends 'layouts/main.html' %}
+{%block title %}Total{% endblock %}
+{%block content%}
+
+<div class="page-header">
+	<h1>Total Impact</h1>
+</div>
+<div class="jumbotron">
+	<table class="table text-center">
+		<thead>
+			<th>Number of People who have pledged to cut back beef consumption</th>
+			<th>Amount of CO<sub>2</sub> this would save</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{number}}</td>
+				<td>{{total}} Kg</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+{% endblock %}
