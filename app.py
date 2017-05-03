@@ -29,6 +29,13 @@ db = SqliteDatabase('people.db')
 db.connect()
 #Pledge.create_table(True)
 
+class Pledge(Model):
+    name = TextField(null=True)
+    cutBack = IntegerField(null=True)
+
+    class Meta:
+        database = db
+
 # Automatically tear down SQLAlchemy.
 '''
 @app.teardown_request

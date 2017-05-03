@@ -1,4 +1,4 @@
-from peewee import *
+'''from peewee import *
 from app import db 
 
 class Pledge(Model):
@@ -7,3 +7,4 @@ class Pledge(Model):
 
     class Meta:
         database = db
+        '''
