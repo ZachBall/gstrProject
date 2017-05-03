@@ -71,7 +71,13 @@ def home():
 def about():
     if request.method == "POST":
         data = request.form
-        Pledge.create(name=data['Name'], cutBack=data['cutOut'])
+        try:
+            Pledge.create(name=data['Name'], cutBack=data['cutOut'])
+        except:
+            try:
+                Pledge.create(name="TESTING", cutBack=532)
+            except:
+                pass
     return render_template('pages/about.html')
 
 @app.route('/total')
